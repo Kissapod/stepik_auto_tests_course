@@ -47,16 +47,15 @@ class TestInput:
         inputPassword.send_keys(password)
         enterButton = browser.find_element(By.CLASS_NAME, "sign-form__btn")
         enterButton.click()
-        textArea = WebDriverWait(browser, 5).until(
-            EC.visibility_of_element_located((By.TAG_NAME, "textarea"))
+        textarea = WebDriverWait(browser, 10).until(
+            EC.presence_of_element_located((By.TAG_NAME, "textarea"))
         )
-        print(textArea)
-        textArea.send_keys(str(math.log(int(time.time() + 1))))
-        button = WebDriverWait(browser, 5).until(
+        textarea.send_keys(str(math.log(int(time.time() + 1))))
+        button = WebDriverWait(browser, 10).until(
             EC.element_to_be_clickable((By.CLASS_NAME, "submit-submission"))
         )
         button.click()
-        hintMessage = WebDriverWait(browser, 5).until(
+        hintMessage = WebDriverWait(browser, 10).until(
             EC.visibility_of_element_located((By.CLASS_NAME, "smart-hints__hint"))
         )
         message = hintMessage.text
